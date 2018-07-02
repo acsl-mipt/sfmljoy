@@ -120,8 +120,23 @@
 // Define helpers to create portable import / export macros for each module
 ////////////////////////////////////////////////////////////
 // Static build doesn't need import/export macros
-#define SFMLJOY_API_EXPORT
-#define SFMLJOY_API_IMPORT
+#ifdef SFMLJOY_SYSTEM_WINDOWS
+
+    #if defined(BUILDING_SFMLJOY)
+
+        #define SFMLJOY_API __declspec(dllexport)
+
+    #else
+
+        #define SFMLJOY_API __declspec(dllimport)
+
+    #endif
+
+#else
+
+    #define SFMLJOY_API __attribute__ ((__visibility__ ("default")))
+
+#endif
 
 ////////////////////////////////////////////////////////////
 // Cross-platform warning for deprecated functions and classes

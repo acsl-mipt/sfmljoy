@@ -29,7 +29,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <sfmljoy/Config.hpp>
-#include <sfmljoy/String.hpp>
+#include <string>
 
 namespace sfmljoy
 {
@@ -37,7 +37,7 @@ namespace sfmljoy
 /// \brief Give access to the real-time state of the joysticks
 ///
 ////////////////////////////////////////////////////////////
-class Joystick
+class SFMLJOY_API Joystick
 {
 public:
 
@@ -76,7 +76,7 @@ public:
     {
         Identification();
 
-        String       name;      ///< Name of the joystick
+        std::string  name;      ///< Name of the joystick
         unsigned int vendorId;  ///< Manufacturer identifier
         unsigned int productId; ///< Product identifier
     };
