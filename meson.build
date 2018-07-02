@@ -3,30 +3,31 @@ project('sfmljoy', 'cpp', default_options : 'cpp_std=c++11')
 cc = meson.get_compiler('cpp')
 
 src = [
-  'src/SFML/System/Clock.cpp',
-  'src/SFML/System/Err.cpp',
-  'src/SFML/System/String.cpp',
-  'src/SFML/System/Time.cpp',
-  'src/SFML/System/Lock.cpp',
-  'src/SFML/System/Mutex.cpp',
-  'src/SFML/Window/Joystick.cpp',
-  'src/SFML/Window/JoystickManager.cpp',
+  'src/sfmljoy/Clock.cpp',
+  'src/sfmljoy/Err.cpp',
+  'src/sfmljoy/String.cpp',
+  'src/sfmljoy/Time.cpp',
+  'src/sfmljoy/Lock.cpp',
+  'src/sfmljoy/Mutex.cpp',
+  'src/sfmljoy/Joystick.cpp',
+  'src/sfmljoy/JoystickManager.cpp',
 ]
 
 deps = []
 priv_args = []
-pub_args = ['-DSFML_STATIC']
+pub_args = []
 
 if target_machine.system() == 'windows'
-  src += 'src/SFML/System/Win32/ClockImpl.cpp'
-  src += 'src/SFML/System/Win32/MutexImpl.cpp'
-  src += 'src/SFML/Window/Win32/JoystickImpl.cpp'
+  src += 'src/sfmljoy/Win32/ClockImpl.cpp'
+  src += 'src/sfmljoy/Win32/MutexImpl.cpp'
+  src += 'src/sfmljoy/Win32/JoystickImpl.cpp'
   deps += cc.find_library('winmm', required : true)
   priv_args += '-DUNICODE'
   priv_args += '-D_UNICODE'
 elif target_machine.system() == 'linux'
-  src += 'src/SFML/System/Unix/ClockImpl.cpp'
-  src += 'src/SFML/Window/Unix/JoystickImpl.cpp'
+  src += 'src/sfmljoy/Unix/ClockImpl.cpp'
+  src += 'src/sfmljoy/Unix/MutexImpl.cpp'
+  src += 'src/sfmljoy/Unix/JoystickImpl.cpp'
   deps += dependency('libudev', required : true)
 #  deps += cc.find_library('rt', required : true)
 else
