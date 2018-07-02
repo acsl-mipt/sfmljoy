@@ -35,7 +35,7 @@ endif
 
 deps += dependency('threads', required : true)
 
-sfmljoy_lib = shared_library('sfmljoy',
+sfmljoy_lib = static_library('sfmljoy',
   name_prefix : 'lib',
   sources : src,
   include_directories : include_directories('include', 'src'),
