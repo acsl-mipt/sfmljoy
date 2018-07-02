@@ -651,7 +651,7 @@ bool JoystickImpl::openDInput(unsigned int index)
 
             if (!m_device->GetProperty(DIPROP_PRODUCTNAME, &stringProperty.diph))
             {
-                m_identification.name = stringProperty.wsz;
+                m_identification.name = sfmljoy::String(stringProperty.wsz);
             }
 
             // Get vendor and produce id of the device
